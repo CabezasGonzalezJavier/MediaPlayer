@@ -26,19 +26,22 @@ public final class R {
         public static final int profile=0x7f020001;
     }
     public static final class id {
-        public static final int action_song=0x7f09000c;
-        public static final int action_video=0x7f09000b;
-        public static final int imageButton1=0x7f090003;
-        public static final int imageButton2=0x7f090002;
-        public static final int imageButton_media_ff=0x7f090000;
-        public static final int imageButton_media_rew=0x7f090001;
-        public static final int imageView_profile=0x7f090008;
-        public static final int seekBar1=0x7f090004;
-        public static final int surfView=0x7f09000a;
-        public static final int textView1=0x7f090006;
-        public static final int textView2=0x7f090005;
-        public static final int textView4=0x7f090009;
-        public static final int textView_name=0x7f090007;
+        public static final int action_song=0x7f09000f;
+        public static final int action_video=0x7f09000e;
+        public static final int activity_video_imageButton_play=0x7f09000d;
+        public static final int activity_video_surfView=0x7f09000c;
+        public static final int imageButton_media_ff=0x7f090001;
+        public static final int imageButton_media_rew=0x7f090002;
+        public static final int imageButton_pause=0x7f090003;
+        public static final int imageButton_play=0x7f090004;
+        public static final int imageView_profile=0x7f090000;
+        public static final int seekBar1=0x7f090005;
+        public static final int textView1=0x7f090007;
+        public static final int textView2=0x7f090006;
+        public static final int textView_finish_min=0x7f090009;
+        public static final int textView_name=0x7f09000b;
+        public static final int textView_start_min=0x7f090008;
+        public static final int textView_title_name=0x7f09000a;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;

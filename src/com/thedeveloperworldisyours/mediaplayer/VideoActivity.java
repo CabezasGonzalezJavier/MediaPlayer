@@ -10,22 +10,31 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 
 import com.thedeveloperworldisyours.mediaplayer.utils.Constants;
 
 public class VideoActivity extends Activity implements SurfaceHolder.Callback,
-		OnPreparedListener {
+		OnPreparedListener, OnClickListener {
 
 	private MediaPlayer mMediaPlayer;
 	private SurfaceHolder mVidHolder;
 	private SurfaceView mVidSurface;
+	private boolean mPlayBoolean=true;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_video);
 
-		mVidSurface = (SurfaceView) findViewById(R.id.surfView);
+		ImageButton playButton = (ImageButton) findViewById(R.id.activity_video_imageButton_play);
+
+		playButton.setOnClickListener(this);
+		
+		mVidSurface = (SurfaceView) findViewById(R.id.activity_video_surfView);
 		mVidHolder = mVidSurface.getHolder();
 		mVidHolder.addCallback(this);
 	}
@@ -45,7 +54,7 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback,
 		int id = item.getItemId();
 		if (id == R.id.action_song) {
 			Intent intent = new Intent(this, MainActivity.class);
-	        startActivity(intent);
+			startActivity(intent);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -53,7 +62,7 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback,
 
 	@Override
 	public void onPrepared(MediaPlayer arg0) {
-		mMediaPlayer.start();
+		
 	}
 
 	@Override
@@ -78,5 +87,24 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback,
 	@Override
 	public void surfaceDestroyed(SurfaceHolder arg0) {
 		mMediaPlayer.stop();
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.activity_video_imageButton_play:
+			if (mPlayBoolean) {
+				
+				mMediaPlayer.start();
+				mPlayBoolean = false;
+			}else{
+				mMediaPlayer.pause();
+				mPlayBoolean = true;
+			}
+			
+			break;
+		default:
+			break;
+		}
 	}
 }

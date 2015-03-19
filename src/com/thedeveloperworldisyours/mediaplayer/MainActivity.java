@@ -34,12 +34,12 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		mSongName = (TextView) findViewById(R.id.textView4);
+		mSongName = (TextView) findViewById(R.id.textView_name);
 		mStartTimeField = (TextView) findViewById(R.id.textView1);
 		mEndTimeField = (TextView) findViewById(R.id.textView2);
 		mSeekbar = (SeekBar) findViewById(R.id.seekBar1);
-		mPlayButton = (ImageButton) findViewById(R.id.imageButton1);
-		mPauseButton = (ImageButton) findViewById(R.id.imageButton2);
+		mPlayButton = (ImageButton) findViewById(R.id.imageButton_play);
+		mPauseButton = (ImageButton) findViewById(R.id.imageButton_pause);
 		mSongName.setText(Constants.NAME_SONG);
 		mMediaPlayer = MediaPlayer.create(this, R.raw.song);
 		mSeekbar.setClickable(false);
