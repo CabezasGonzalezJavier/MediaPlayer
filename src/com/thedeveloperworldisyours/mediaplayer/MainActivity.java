@@ -2,10 +2,15 @@ package com.thedeveloperworldisyours.mediaplayer;
 
 import java.util.concurrent.TimeUnit;
 
+import com.thedeveloperworldisyours.mediaplayer.utils.Constants;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
@@ -35,7 +40,7 @@ public class MainActivity extends Activity {
 		mSeekbar = (SeekBar) findViewById(R.id.seekBar1);
 		mPlayButton = (ImageButton) findViewById(R.id.imageButton1);
 		mPauseButton = (ImageButton) findViewById(R.id.imageButton2);
-		mSongName.setText("song.mp3");
+		mSongName.setText(Constants.NAME_SONG);
 		mMediaPlayer = MediaPlayer.create(this, R.raw.song);
 		mSeekbar.setClickable(false);
 		mPauseButton.setEnabled(false);
@@ -117,6 +122,26 @@ public class MainActivity extends Activity {
 					.show();
 		}
 
+	}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.action_video) {
+			Intent intent = new Intent(this, VideoActivity.class);
+	        startActivity(intent);
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 }
