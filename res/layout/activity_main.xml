@@ -16,50 +16,50 @@
         android:layout_centerVertical="true"
         android:src="@drawable/profile" />
 
-    <ImageButton
-        android:id="@+id/imageButton_media_ff"
+    <LinearLayout
+        android:id="@+id/linear_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginBottom="14dp"
-        android:onClick="forward"
-        android:src="@android:drawable/ic_media_ff" />
+        android:orientation="horizontal" >
 
-    <ImageButton
-        android:id="@+id/imageButton_media_rew"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/imageButton_pause"
-        android:layout_marginLeft="22dp"
-        android:layout_toRightOf="@+id/imageButton_pause"
-        android:onClick="rewind"
-        android:src="@android:drawable/ic_media_rew" />
+        <ImageButton
+            android:id="@+id/imageButton_media_rew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="rewind"
+            android:src="@android:drawable/ic_media_rew" />
 
-    <ImageButton
-        android:id="@+id/imageButton_pause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageButton_play"
-        android:layout_marginLeft="14dp"
-        android:layout_toRightOf="@+id/imageButton_play"
-        android:src="@android:drawable/ic_media_pause" />
+        <ImageButton
+            android:id="@+id/imageButton_pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:src="@android:drawable/ic_media_pause" />
 
-    <ImageButton
-        android:id="@+id/imageButton_play"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageButton_media_ff"
-        android:layout_marginLeft="24dp"
-        android:layout_toRightOf="@+id/imageButton_media_ff"
-        android:src="@android:drawable/ic_media_play" />
+        <ImageButton
+            android:id="@+id/imageButton_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:src="@android:drawable/ic_media_play" />
+
+        <ImageButton
+            android:id="@+id/imageButton_media_ff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:onClick="forward"
+            android:src="@android:drawable/ic_media_ff" />
+    </LinearLayout>
 
     <SeekBar
         android:id="@+id/seekBar1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/imageButton_media_ff"
+        android:layout_above="@+id/linear_layout"
         android:layout_toLeftOf="@+id/textView2"
         android:layout_toRightOf="@+id/textView1" />
 
@@ -67,7 +67,7 @@
         android:id="@+id/textView_start_min"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/imageButton_media_ff"
+        android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/seekBar1"
         android:text="@string/inital_time"
         android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -76,7 +76,7 @@
         android:id="@+id/textView_finish_min"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageButton_media_rew"
+        android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/seekBar1"
         android:text="@string/inital_time"
         android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -94,6 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView_title_name"
         android:layout_alignBottom="@+id/textView_title_name"
-        android:layout_toRightOf="@+id/imageButton_play"/>
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/textView_title_name" />
 
 </RelativeLayout>

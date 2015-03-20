@@ -1,7 +1,6 @@
 package com.thedeveloperworldisyours.mediaplayer;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;
@@ -12,7 +11,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.thedeveloperworldisyours.mediaplayer.utils.Constants;
@@ -25,15 +24,16 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback,
 	private SurfaceHolder mVidHolder;
 	private SurfaceView mVidSurface;
 	private boolean mPlayBoolean = true;
+	Button mPlayButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_video);
 
-		ImageButton playButton = (ImageButton) findViewById(R.id.activity_video_imageButton_play);
+		mPlayButton = (Button) findViewById(R.id.activity_video_imageButton_play);
 
-		playButton.setOnClickListener(this);
+		mPlayButton.setOnClickListener(this);
 
 		mVidSurface = (SurfaceView) findViewById(R.id.activity_video_surfView);
 		mVidHolder = mVidSurface.getHolder();
@@ -95,11 +95,12 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback,
 		case R.id.activity_video_imageButton_play:
 			if (Utils.isOnline(VideoActivity.this)) {
 				if (mPlayBoolean) {
-
 					mMediaPlayer.start();
+					mPlayButton.setBackground(getResources().getDrawable(android.R.drawable.ic_media_pause));
 					mPlayBoolean = false;
 				} else {
 					mMediaPlayer.pause();
+					mPlayButton.setBackground(getResources().getDrawable(android.R.drawable.ic_media_play));
 					mPlayBoolean = true;
 				}
 			} else {
