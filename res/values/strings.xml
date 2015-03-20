@@ -10,5 +10,6 @@
     <string name="title_activity_video">VideoActivity</string>
     <string name="action_song">Song</string>
     <string name="check_connection">Check your connection</string>
+    <string name="loading">Loading&#8230;</string>
 
 </resources>

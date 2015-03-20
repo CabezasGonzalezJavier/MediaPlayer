@@ -2,9 +2,8 @@ package com.thedeveloperworldisyours.mediaplayer;
 
 import java.util.concurrent.TimeUnit;
 
-import com.thedeveloperworldisyours.mediaplayer.utils.Constants;
-
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -18,6 +17,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.thedeveloperworldisyours.mediaplayer.utils.Constants;
+
 public class MainActivity extends Activity implements OnClickListener {
 
 	public TextView mSongName, mStartTimeField, mEndTimeField;
@@ -30,6 +31,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private SeekBar mSeekbar;
 	private ImageButton mPlayButton, mPauseButton;
 	public static int mOneTimeOnly = 0;
+	private ProgressDialog mProgress;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,14 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 		mPlayButton.setOnClickListener(this);
 		mPauseButton.setOnClickListener(this);
+	}
+
+	@Override
+	protected void onStart() {
+		if (mProgress!= null) {
+			mProgress.dismiss();
+		}
+		super.onStart();
 	}
 
 	public void play(View view) {
@@ -142,6 +152,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_video) {
+			mProgress= new ProgressDialog(this);
+			mProgress.setMessage(getString(R.string.loading));
+			mProgress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			mProgress.setIndeterminate(true);
+			mProgress.show();
 			Intent intent = new Intent(this, VideoActivity.class);
 			startActivity(intent);
 			return true;
