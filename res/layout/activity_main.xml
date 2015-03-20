@@ -44,7 +44,6 @@
         android:layout_alignTop="@+id/imageButton_play"
         android:layout_marginLeft="14dp"
         android:layout_toRightOf="@+id/imageButton_play"
-        android:onClick="pause"
         android:src="@android:drawable/ic_media_pause" />
 
     <ImageButton
@@ -54,7 +53,6 @@
         android:layout_alignTop="@+id/imageButton_media_ff"
         android:layout_marginLeft="24dp"
         android:layout_toRightOf="@+id/imageButton_media_ff"
-        android:onClick="play"
         android:src="@android:drawable/ic_media_play" />
 
     <SeekBar

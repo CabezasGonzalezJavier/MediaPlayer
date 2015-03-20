@@ -13,8 +13,10 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.thedeveloperworldisyours.mediaplayer.utils.Constants;
+import com.thedeveloperworldisyours.mediaplayer.utils.Utils;
 
 public class VideoActivity extends Activity implements SurfaceHolder.Callback,
 		OnPreparedListener, OnClickListener {
@@ -22,8 +24,7 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback,
 	private MediaPlayer mMediaPlayer;
 	private SurfaceHolder mVidHolder;
 	private SurfaceView mVidSurface;
-	private boolean mPlayBoolean=true;
-	
+	private boolean mPlayBoolean = true;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback,
 		ImageButton playButton = (ImageButton) findViewById(R.id.activity_video_imageButton_play);
 
 		playButton.setOnClickListener(this);
-		
+
 		mVidSurface = (SurfaceView) findViewById(R.id.activity_video_surfView);
 		mVidHolder = mVidSurface.getHolder();
 		mVidHolder.addCallback(this);
@@ -53,8 +54,7 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback,
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_song) {
-			Intent intent = new Intent(this, MainActivity.class);
-			startActivity(intent);
+			finish();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -62,7 +62,7 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback,
 
 	@Override
 	public void onPrepared(MediaPlayer arg0) {
-		
+
 	}
 
 	@Override
@@ -93,15 +93,20 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback,
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.activity_video_imageButton_play:
-			if (mPlayBoolean) {
-				
-				mMediaPlayer.start();
-				mPlayBoolean = false;
-			}else{
-				mMediaPlayer.pause();
-				mPlayBoolean = true;
+			if (Utils.isOnline(VideoActivity.this)) {
+				if (mPlayBoolean) {
+
+					mMediaPlayer.start();
+					mPlayBoolean = false;
+				} else {
+					mMediaPlayer.pause();
+					mPlayBoolean = true;
+				}
+			} else {
+				Toast.makeText(VideoActivity.this, R.string.check_connection,
+						Toast.LENGTH_SHORT).show();
 			}
-			
+
 			break;
 		default:
 			break;

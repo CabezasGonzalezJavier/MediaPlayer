@@ -12,12 +12,13 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnClickListener {
 
 	public TextView mSongName, mStartTimeField, mEndTimeField;
 	private MediaPlayer mMediaPlayer;
@@ -35,8 +36,8 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		mSongName = (TextView) findViewById(R.id.textView_name);
-		mStartTimeField = (TextView) findViewById(R.id.textView1);
-		mEndTimeField = (TextView) findViewById(R.id.textView2);
+		mStartTimeField = (TextView) findViewById(R.id.textView_start_min);
+		mEndTimeField = (TextView) findViewById(R.id.textView_finish_min);
 		mSeekbar = (SeekBar) findViewById(R.id.seekBar1);
 		mPlayButton = (ImageButton) findViewById(R.id.imageButton_play);
 		mPauseButton = (ImageButton) findViewById(R.id.imageButton_pause);
@@ -45,6 +46,9 @@ public class MainActivity extends Activity {
 		mSeekbar.setClickable(false);
 		mPauseButton.setEnabled(false);
 
+		
+		mPlayButton.setOnClickListener(this);
+		mPauseButton.setOnClickListener(this);
 	}
 
 	public void play(View view) {
@@ -123,6 +127,7 @@ public class MainActivity extends Activity {
 		}
 
 	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -138,10 +143,24 @@ public class MainActivity extends Activity {
 		int id = item.getItemId();
 		if (id == R.id.action_video) {
 			Intent intent = new Intent(this, VideoActivity.class);
-	        startActivity(intent);
+			startActivity(intent);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.imageButton_play:
+			play(v);
+			break;
+		case R.id.imageButton_pause:
+			pause(v);
+			break;
+		default:
+			break;
+		}
 	}
 
 }
