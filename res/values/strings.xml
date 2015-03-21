@@ -3,7 +3,7 @@
 
     <string name="app_name">MediaPlayer</string>
     <string name="action_video">Video</string>
-    <string name="hello_world">Now Playing:</string>
+    <string name="now_play">Now Playing:</string>
     <string name="inital_time">0 min, 0 sec</string>
     <string name="pausing_sound">Pausing sound</string>
     <string name="playing_sound">Playing sound</string>
